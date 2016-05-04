@@ -1,0 +1,24 @@
+{
+  "configuration": {
+    "cloud": {
+      "amazon": {
+        "endPoint": "someEndpoint",
+        "region": "eu-west-1",
+        "clientId": "someClientId",
+        "accessKey": "someAccessKey",
+        "secretKey": "someSecretKey"
+      },
+      "azure": {
+        "connectionString": "someConnectionString"
+      }
+    },
+    "backUp": {
+      "csv": {
+        "desc": "someCsvUrl"
+      },
+      "database": {
+        "connectionString": "someDBConnectionString"
+      }
+    }
+  }
+}

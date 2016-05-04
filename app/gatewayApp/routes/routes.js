@@ -6,12 +6,12 @@
 
     angular.module('gatewayApp', ['ui.router']).config(function($stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.otherwise('/index');
+        //$urlRouterProvider.otherwise('/');
 
         $stateProvider
 
-            .state('home', {
-                url: '/home',
+            .state('/', {
+                url: '/',
                 templateUrl: 'views/partial-home.html'
 
             })
@@ -29,7 +29,9 @@
 
             .state('settings', {
                 url: '/settings',
-                templateUrl: 'views/partial-settings.html'
+                templateUrl: 'views/partial-settings.html',
+                controller: 'restController',
+                controllerAs: 'restCtrl'
 
 
             })
