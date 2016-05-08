@@ -1,37 +1,56 @@
 /**
  * Created by Kenny on 4/05/2016.
  */
-// Uitwerking film toevoegen via een formulier op de website
 
 var router = require('express').Router();
 var config = require('../data/settings.json');
+var fs = require('fs');
+var jsonfile = require('jsonfile');
+var file = 'data/settings.json';
 
 // Een POST-request verwerken om nieuwe film toe te voegen
-router.post('/gateway/add/settings', function (req, res) {
+/*router.post('/gateway/modify/config/cloud', function (req, res, next) {
 
-    // verwerk binnenkomende request. We gaan er van uit
-    // dat de parameters 'Titel', 'Auteur' en 'Jaar' aanwezig zijn.
+    //var spec = req.params.spec;
+
+    console.log("Cloud settings posted");
 
 
-    // dynamisch nieuwe ID uitrekenen en film-object samenstellen.
+    config.configuration.cloud.amazon.endPoint = req.body.endPoint;
 
-    // push naar de array
 
-    // Echo de nieuwe films naar de client zodat ze verwerkt kunnen worden.
+    res.send(config);
 
-    var newFilm = {};
-    newFilm.id = films.length + 1;
-    newFilm.titel = req.body.titel;
-    newFilm.auteur = req.body.auteur;
-    newFilm.jaar = req.body.jaar;
+    next();
 
-    config.push(newFilm);
+});*/
 
-    res.send(films);
+router.post('/gateway/modify/config/:spec', function (req, res) {
+
+    console.log("Cloud settings put" );
+
+    console.log(JSON.stringify(req.body ) + "data");
+
+    var spec = req.params.spec;
+
+    config.configuration[spec] = req.body;
+    //fs.writeFileSync('data/settings.json', JSON.stringify(req.body));
+
+/*
+    jsonfile.writeFile(file, config, function (err) {
+        console.error(err)
+    })
+*/
+
+    jsonfile.writeFileSync(file, config, {spaces: 4})
+
+    //config.save(file);
+
+    res.send(spec);
+
 
 });
 
-// Retourneer films
 router.get('/gateway/get/config/:spec', function (req, res, next) {
 
     var spec = req.params.spec;
@@ -40,10 +59,9 @@ router.get('/gateway/get/config/:spec', function (req, res, next) {
 
     //var test = JSON.parse(films);
     console.log(object);
-    res.json(object);
+    res.send(object);
 });
 
-// 4. DELETE-endpoint: boek verwijderen uit het JSON object.
 router.delete('/gateway/deletefilm/:id', function (req, res, next) {
     var id = req.params.id;
 

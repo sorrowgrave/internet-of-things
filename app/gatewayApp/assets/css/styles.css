@@ -83,6 +83,7 @@ div.bhoechie-tab-container{
     margin-left: 0px;
 }
 
+
 .save-button{
     width:100px;
 }
@@ -92,11 +93,25 @@ div.bhoechie-tab-container{
 }
 
 .hero-spacer {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .hero-feature {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+}
+
+div.hero-feature > div.thumbnail > img {
+    width: 252.5px;
+    height: 157.8px;
+    object-fit: cover;
+}
+
+.amazon{
+    background-image: url('../images/Amazon-Logo-PNG.png');
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size:contain;
+    height:80px;
 }
 
 footer {

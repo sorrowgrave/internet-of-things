@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    angular.module('gatewayApp', ['ui.router']).config(function($stateProvider, $urlRouterProvider) {
+    angular.module('gatewayApp', ['ui.router', 'ngResource']).config(function($stateProvider, $urlRouterProvider) {
 
         //$urlRouterProvider.otherwise('/');
 
@@ -21,6 +21,13 @@
                 templateUrl: 'views/partial-about.html'
             })
 
+            .state('features', {
+                url: '/features',
+                templateUrl: 'views/partial-features.html',
+                controller: 'appController',
+                controllerAs: 'vm'
+            })
+
             .state('contact', {
                 url: '/contact',
                 templateUrl: 'views/partial-contact.html'
@@ -30,9 +37,11 @@
             .state('settings', {
                 url: '/settings',
                 templateUrl: 'views/partial-settings.html',
-                controller: 'restController',
-                controllerAs: 'restCtrl'
-
+                controller: 'settingsController',
+                controllerAs: 'settingsCtrl',
+                resolve: {
+                    settingsFactory: 'settingsFactory'
+                    }
 
             })
         });

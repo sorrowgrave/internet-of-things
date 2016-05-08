@@ -2,65 +2,63 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
                 <div class="list-group">
-                    <a href="#" class="list-group-item active text-center" ng-load="restCtrl.get('cloud')" ng-click="restCtrl.get('cloud')" rotate>
+                    <a href="#" class="list-group-item text-center" rotate>
+                        <h4 class="fa fa-sign-out fa-lg"></h4><br/>Gateway Configuration
+                    </a>
+                    <a href="#" class="list-group-item active text-center" ng-click="settingsCtrl.getCloud()" rotate>
                         <h4 class="fa fa-cloud fa-lg"></h4><br/>Cloud Configuration
                     </a>
-                    <a href="#" class="list-group-item text-center" ng-click="restCtrl.get('backUp')" rotate>
+                    <a href="#" class="list-group-item text-center" ng-click="settingsCtrl.test()" rotate>
                         <h4 class="fa fa-undo fa-lg"></h4><br/>Back-up Utilities
                     </a>
-                    <a href="#" class="list-group-item text-center" ng-click="restCtrl.get('sensorNetwork')" rotate>
+                    <a href="#" class="list-group-item text-center" ng-click="settingsCtrl.test()" rotate>
                         <h4 class="fa fa-connectdevelop fa-lg"></h4><br/>Sensor Network
                     </a>
-                    <a href="#" class="list-group-item text-center" ng-click="restCtrl.get('help')" rotate>
+                    <a href="#" class="list-group-item text-center" ng-click="settingsCtrl.test()" rotate>
                         <h4 class="fa fa-question fa-lg"></h4><br/>Help
                     </a>
-<!--
-                    <a href="#" class="list-group-item text-center" rotate>
-                        <h4 class="glyphicon glyphicon-home"></h4><br/>Safety and Health Effects/Treatment
-                    </a>
-                    <a href="#" class="list-group-item text-center" rotate>
-                        <h4 class="glyphicon glyphicon-home"></h4><br/>Toxicity
-                    </a>-->
                 </div>
             </div>
             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
-                <!-- flight section -->
+                <div class="bhoechie-tab-content">
+                    <center>
+                        <h1 class="glyphicon glyphicon-credit-card" style="font-size:12em;color:#55518a"></h1>
+                        <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
+                        <h3 style="margin-top: 0;color:#55518a">Credit Card</h3>
+                    </center>
+                </div>
                 <div class="bhoechie-tab-content active">
                     <div>
-                        <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" class="active"><a href="#amazon" aria-controls="amazon" role="tab" data-toggle="tab">Amazon</a></li>
                             <li role="presentation"><a href="#azure" aria-controls="azure" role="tab" data-toggle="tab">Azure</a></li>
                         </ul>
-
-                        <!-- Tab panes -->
+                        <form id="cloudForm" ng-submit="settingsCtrl.updateCloud()">
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="amazon" >
                                 <div class="row" >
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="endpoint">Endpoint: </label>
-                                            <input type="text" class="form-control" id="endpoint" placeholder="EndPoint" ng-model="restCtrl.endPoint">
+                                            <input type="text" class="form-control" id="endpoint" placeholder="EndPoint" ng-model="settingsCtrl.cloud.amazon.endPoint">
                                         </div>
                                         <div class="form-group">
                                             <label for="region">Region: </label>
-                                            <input type="text" class="form-control" id="region" placeholder="region" ng-model="restCtrl.region">
+                                            <input type="text" class="form-control" id="region" placeholder="region" ng-model="settingsCtrl.cloud.amazon.region">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="clientId">Client id: </label>
-                                            <input type="text" class="form-control" id="clientId" ng-model="restCtrl.clientId" placeholder="SomeClientId"/>
+                                            <input type="text" class="form-control" id="clientId"  placeholder="SomeClientId" ng-model="settingsCtrl.cloud.amazon.clientId"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="accessKey">Access key: </label>
-                                            <input type="text" class="form-control" id="accessKey" ng-model="restCtrl.accessKey" placeholder="AWS access key"
-                                                   ng-model="clientCtrl.accessKey"/>
+                                            <input type="text" class="form-control" id="accessKey"  placeholder="AWS access key" ng-model="settingsCtrl.cloud.amazon.accessKey"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="secretKey">Secret Key: </label>
-                                            <input type="password" class="form-control" id="secretKey" ng-model="restCtrl.secretKey" placeholder="AWS secret key"
-                                                   ng-model="clientCtrl.secretKey">
+                                            <input type="password" class="form-control" id="secretKey"  placeholder="AWS secret key" ng-model="settingsCtrl.cloud.amazon.secretKey">
                                         </div>
 
                                     </div>
@@ -69,57 +67,47 @@
                             <div role="tabpanel" class="tab-pane" id="azure">
                                 <div class="form-group">
                                     <label for="endpoint">Connectionstring: </label>
-                                    <input type="text" class="form-control" id="connectionstring" placeholder="Connectionstring" ng-model="restCtrl.connectionString">
+                                    <input type="text" class="form-control" id="connectionstring" placeholder="Connectionstring" ng-model="settingsCtrl.cloud.azure.connectionString">
                                 </div>
                             </div>
-
                         </div>
+                        </form>
                     </div>
 
                 </div>
-                <!-- train section -->
                 <div class="bhoechie-tab-content">
                     <center>
                         <h1 class="glyphicon glyphicon-road" style="font-size:12em;color:#55518a"></h1>
-                        <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
+                        <h2 style="margin-top: 0;color:#55518a">Coming Soon</h2>
                         <h3 style="margin-top: 0;color:#55518a">Train Reservation</h3>
                     </center>
                 </div>
-
-                <!-- hotel search -->
                 <div class="bhoechie-tab-content">
                     <center>
                         <h1 class="glyphicon glyphicon-home" style="font-size:12em;color:#55518a"></h1>
-                        <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
+                        <h2 style="margin-top: 0;color:#55518a">Coming Soon</h2>
                         <h3 style="margin-top: 0;color:#55518a">Hotel Directory</h3>
                     </center>
                 </div>
                 <div class="bhoechie-tab-content">
                     <center>
                         <h1 class="glyphicon glyphicon-cutlery" style="font-size:12em;color:#55518a"></h1>
-                        <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
-                        <h3 style="margin-top: 0;color:#55518a">Restaurant Diirectory</h3>
+                        <h2 style="margin-top: 0;color:#55518a">Coming Soon</h2>
+                        <h3 style="margin-top: 0;color:#55518a">Restaurant Directory</h3>
                     </center>
                 </div>
-<!--                <div class="bhoechie-tab-content">
-                    <center>
-                        <h1 class="glyphicon glyphicon-credit-card" style="font-size:12em;color:#55518a"></h1>
-                        <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
-                        <h3 style="margin-top: 0;color:#55518a">Credit Card</h3>
-                    </center>
-                </div>
-                <div class="bhoechie-tab-content">
-                    <center>
-                        <h1 class="glyphicon glyphicon-credit-card" style="font-size:12em;color:#55518a"></h1>
-                        <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
-                        <h3 style="margin-top: 0;color:#55518a">Credit Card</h3>
-                    </center>
-                </div>-->
+                <!--              <div class="bhoechie-tab-content">
+                                  <center>
+                                      <h1 class="glyphicon glyphicon-credit-card" style="font-size:12em;color:#55518a"></h1>
+                                      <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
+                                      <h3 style="margin-top: 0;color:#55518a">Credit Card</h3>
+                                  </center>
+                              </div>-->
             </div>
-
         </div>
+         <div style="margin-top:10px;">
+             <button type="submit" form="cloudForm" class="btn btn-primary btn-purple save-button pull-right">Save</button>
+         </div>
 
-     <div style="margin-top:10px;">
-         <a href="#" class="btn btn-primary btn-purple save-button pull-right">Save</a>
-     </div>
+
  </div>

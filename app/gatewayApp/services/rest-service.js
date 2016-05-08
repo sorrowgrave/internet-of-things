@@ -10,3 +10,13 @@ function createJSON($http) {
         //$scope.greeting = data;
     });
 }
+
+function testPost()
+{
+    alert("testpost");
+}
+
+function getCloudConfig($http)
+{
+
+}
