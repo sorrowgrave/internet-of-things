@@ -6,15 +6,14 @@
 (function () {
     'use strict';
 
-    angular.module("gatewayApp").directive('rotate', [function() {
+    angular.module("gatewayApp").directive('rotate', [function () {
         return {
             restrict: 'A',
-            link: function(scope, element, attrs) {
-                element.bind('click', function() {
+            link: function (scope, element, attrs) {
+                element.bind('click', function () {
                     rotate(element);
                 });
             }
         };
     }]);
-
 })();

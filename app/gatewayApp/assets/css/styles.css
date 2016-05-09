@@ -111,7 +111,15 @@ div.hero-feature > div.thumbnail > img {
     background-position: center;
     background-repeat:no-repeat;
     background-size:contain;
-    height:80px;
+    height:54px;
+}
+
+.active .amazon{
+    background-image: url('../images/Amazon-Logo-Active-PNG.png');
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size:contain;
+    height:54px;
 }
 
 footer {

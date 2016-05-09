@@ -8,24 +8,7 @@ var fs = require('fs');
 var jsonfile = require('jsonfile');
 var file = 'data/settings.json';
 
-// Een POST-request verwerken om nieuwe film toe te voegen
-/*router.post('/gateway/modify/config/cloud', function (req, res, next) {
-
-    //var spec = req.params.spec;
-
-    console.log("Cloud settings posted");
-
-
-    config.configuration.cloud.amazon.endPoint = req.body.endPoint;
-
-
-    res.send(config);
-
-    next();
-
-});*/
-
-router.post('/gateway/modify/config/:spec', function (req, res) {
+router.post('/gateway/modify/config/:spec', function (req, res, next) {
 
     console.log("Cloud settings put" );
 
@@ -34,13 +17,6 @@ router.post('/gateway/modify/config/:spec', function (req, res) {
     var spec = req.params.spec;
 
     config.configuration[spec] = req.body;
-    //fs.writeFileSync('data/settings.json', JSON.stringify(req.body));
-
-/*
-    jsonfile.writeFile(file, config, function (err) {
-        console.error(err)
-    })
-*/
 
     jsonfile.writeFileSync(file, config, {spaces: 4})
 
@@ -48,29 +24,24 @@ router.post('/gateway/modify/config/:spec', function (req, res) {
 
     res.send(spec);
 
+    next();
+
 
 });
 
-router.get('/gateway/get/config/:spec', function (req, res, next) {
+router.get('/gateway/get/config/:spec/:spec2*?', function (req, res, next) {
 
     var spec = req.params.spec;
+    var spec2 = req.params.spec2;
 
-    var object = config.configuration[spec];
+    if(spec2 == null)
+        var object = config.configuration[spec];
+    else
+        var object = config.configuration[spec][spec2];
 
-    //var test = JSON.parse(films);
-    console.log(object);
+    console.log(JSON.stringify(object));
     res.send(object);
 });
 
-router.delete('/gateway/deletefilm/:id', function (req, res, next) {
-    var id = req.params.id;
-
-    films.splice(id-1, 1);
-
-    res.send(films);
-
-    next();
-
-});
 
 module.exports = router;

@@ -11,14 +11,14 @@
     function settingsFactory($http) {
         var factory = {};
 
-        factory.getCloudSettings = function () {
+        factory.getCloudSettings = function (spec1, spec2) {
 
-            return $http.get('http://localhost:3000/gateway/get/config/cloud')
+            if (spec2 === undefined) spec2 = '';
+
+            return $http.get('http://localhost:3000/gateway/get/config/' + spec1 + '/' + spec2)
 
                 .success(function (data, status, headers, config) {
 
-/*                    alert("Ok." + data);
-                    return data;*/
 
                 })
 
@@ -29,16 +29,12 @@
 
         factory.updateCloudSettings = function (cloud) {
 
-            var data = {"cloud":"test"};
-
             console.log(JSON.stringify(cloud));
 
             return $http.post('http://localhost:3000/gateway/modify/config/cloud', cloud)
 
                 .success(function (data, status, headers, config) {
 
-                    alert("Ok." + data);
-                    return data;
 
                 })
 

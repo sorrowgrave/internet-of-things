@@ -6,7 +6,7 @@
 
     angular.module('gatewayApp', ['ui.router', 'ngResource']).config(function($stateProvider, $urlRouterProvider) {
 
-        //$urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/');
 
         $stateProvider
 
@@ -24,8 +24,8 @@
             .state('features', {
                 url: '/features',
                 templateUrl: 'views/partial-features.html',
-                controller: 'appController',
-                controllerAs: 'vm'
+                controller: 'featuresController',
+                controllerAs: 'featuresCtrl'
             })
 
             .state('contact', {
@@ -38,10 +38,7 @@
                 url: '/settings',
                 templateUrl: 'views/partial-settings.html',
                 controller: 'settingsController',
-                controllerAs: 'settingsCtrl',
-                resolve: {
-                    settingsFactory: 'settingsFactory'
-                    }
+                controllerAs: 'settingsCtrl'
 
             })
         });

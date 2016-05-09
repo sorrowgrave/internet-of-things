@@ -19,15 +19,10 @@
 
             //alert('test');
 
-            settingsFactory.getCloudSettings()
+            settingsFactory.getCloudSettings('cloud')
                 .success(function (data) {
 
-                    console.log(data + ";e;e");
-
                     vm.cloud = data;
-
-                    //alert("data received");
-
 
                 })
                 .error(function (err, status) {

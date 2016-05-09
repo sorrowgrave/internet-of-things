@@ -2,19 +2,19 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
                 <div class="list-group">
-                    <a href="#" class="list-group-item text-center" rotate>
+                    <a href="" class="list-group-item text-center" rotate>
                         <h4 class="fa fa-sign-out fa-lg"></h4><br/>Gateway Configuration
                     </a>
-                    <a href="#" class="list-group-item active text-center" ng-click="settingsCtrl.getCloud()" rotate>
+                    <a href="" class="list-group-item active text-center" ng-click="settingsCtrl.getCloud()" rotate>
                         <h4 class="fa fa-cloud fa-lg"></h4><br/>Cloud Configuration
                     </a>
-                    <a href="#" class="list-group-item text-center" ng-click="settingsCtrl.test()" rotate>
+                    <a href="" class="list-group-item text-center" ng-click="settingsCtrl.test()" rotate>
                         <h4 class="fa fa-undo fa-lg"></h4><br/>Back-up Utilities
                     </a>
-                    <a href="#" class="list-group-item text-center" ng-click="settingsCtrl.test()" rotate>
+                    <a href="" class="list-group-item text-center" ng-click="settingsCtrl.test()" rotate>
                         <h4 class="fa fa-connectdevelop fa-lg"></h4><br/>Sensor Network
                     </a>
-                    <a href="#" class="list-group-item text-center" ng-click="settingsCtrl.test()" rotate>
+                    <a href="" class="list-group-item text-center" ng-click="settingsCtrl.test()" rotate>
                         <h4 class="fa fa-question fa-lg"></h4><br/>Help
                     </a>
                 </div>
@@ -30,12 +30,12 @@
                 <div class="bhoechie-tab-content active">
                     <div>
                         <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active"><a href="#amazon" aria-controls="amazon" role="tab" data-toggle="tab">Amazon</a></li>
-                            <li role="presentation"><a href="#azure" aria-controls="azure" role="tab" data-toggle="tab">Azure</a></li>
+                            <li role="presentation" class="active"><a href="#settings/amazon" aria-controls="amazon" role="tab" data-toggle="tab">Amazon</a></li>
+                            <li role="presentation"><a href="#settings/azure" aria-controls="azure" role="tab" data-toggle="tab">Azure</a></li>
                         </ul>
                         <form id="cloudForm" ng-submit="settingsCtrl.updateCloud()">
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="amazon" >
+                            <div role="tabpanel" class="tab-pane active" id="settings/amazon" >
                                 <div class="row" >
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -64,7 +64,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="azure">
+                            <div role="tabpanel" class="tab-pane" id="settings/azure">
                                 <div class="form-group">
                                     <label for="endpoint">Connectionstring: </label>
                                     <input type="text" class="form-control" id="connectionstring" placeholder="Connectionstring" ng-model="settingsCtrl.cloud.azure.connectionString">
