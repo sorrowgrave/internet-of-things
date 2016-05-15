@@ -6,7 +6,9 @@
 (function () {
     'use strict';
 
-    angular.module("gatewayApp").directive('rotate', [function () {
+    angular.module("gatewayApp")
+
+        .directive('rotate', [function () {
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
@@ -15,5 +17,5 @@
                 });
             }
         };
-    }]);
+    }]).directive('switch', ['frapontillo.bootstrap-switch']) ;
 })();

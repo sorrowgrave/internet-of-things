@@ -92,6 +92,44 @@ div.bhoechie-tab-container{
     margin-top:10px;
 }
 
+.panel-info > .panel-heading{
+    color: #ffffff;
+    background-color: #5A55A3;
+    border-color: #ddd;
+}
+
+.panel-info{
+    border-color: #ddd;
+}
+
+.panel-body{
+    height:230px;
+}
+
+.close, .close:focus, .close:hover {
+    color: #ffffff;
+    background-color: #5A55A3;
+    text-decoration: none;
+    cursor: pointer;
+    filter: alpha(opacity=50);
+    opacity: .5;
+}
+
+.bootstrap-switch{
+    margin-left:10px;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary, .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary {
+    color: #fff;
+    background: #5A55A3;
+}
+.bootstrap-switch, .bootstrap-switch.bootstrap-switch-focused{
+    outline: none;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
 .hero-spacer {
     margin-top: 20px;
 }
@@ -121,6 +159,24 @@ div.hero-feature > div.thumbnail > img {
     background-size:contain;
     height:54px;
 }
+
+.azure{
+    background-image: url('../images/ms-azure.png');
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size:contain;
+    height:54px;
+}
+
+.active .azure{
+    background-image: url('../images/ms-azure-active.png');
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size:contain;
+    height:54px;
+}
+
+
 
 footer {
     position: fixed;

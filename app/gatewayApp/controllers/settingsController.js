@@ -9,27 +9,24 @@
 
     function settingsController(settingsFactory) {
 
+    }
+
+    angular.module('gatewayApp').controller('settingsCloudController', settingsCloudController);
+
+    function settingsCloudController(settingsFactory){
+
         var vm = this;
-
         vm.cloud = {};
-        vm.backUp = {};
-        vm.sensorNet = {};
 
-        vm.getCloud = function () {
+        settingsFactory.getCloudSettings('cloud')
+            .success(function (data) {
 
-            //alert('test');
+                vm.cloud = data;
 
-            settingsFactory.getCloudSettings('cloud')
-                .success(function (data) {
-
-                    vm.cloud = data;
-
-                })
-                .error(function (err, status) {
-                    alert("error from controller" + err)
-                })
-
-        }
+            })
+            .error(function (err, status) {
+                alert("error from controller" + err)
+            });
 
         vm.updateCloud = function () {
 
@@ -37,8 +34,8 @@
             settingsFactory.updateCloudSettings(vm.cloud)
                 .success(function (data) {
 
-/*                    vm.amazon = data.amazon;
-                    vm.azure = data.azure;*/
+                    /*                    vm.amazon = data.amazon;
+                     vm.azure = data.azure;*/
 
                     //alert("data received");
 
@@ -49,6 +46,12 @@
                 })
 
         }
+    }
+
+
+    angular.module('gatewayApp').controller('settingsGatewayController', settingsGatewayController);
+
+    function settingsGatewayController(settingsFactory){
 
     }
 

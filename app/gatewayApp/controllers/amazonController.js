@@ -9,8 +9,13 @@
     function amazonController(scope, LogService, ClientControllerCache, settingsFactory) {
 
         var vm = this;
+        var bool = false;
 
-        settingsFactory.getCloudSettings('cloud', 'amazon')
+        console.log(JSON.stringify(vm.cloud));
+
+        vm.settingsFact = settingsFactory;
+
+        vm.settingsFact.getCloudSettings('cloud', 'amazon')
             .success(function (data) {
 
                 console.log(JSON.stringify(data));
@@ -26,17 +31,17 @@
                 //alert("data received");
             })
             .error(function (err, status) {
-                alert("error from controller" + err)
-            })
-
+                //alert("error from controller" + err)
+            });
 
 
         vm.logs = new LogService();
         vm.clients = new ClientControllerCache(scope, this.logs);
+        vm.gatewayStatus = "Off";
 
     }
 
-    amazonController.$inject = ['$scope'];
+    //amazonController.$inject = ['$scope'];
 
     amazonController.prototype.createClient = function() {
 
@@ -57,7 +62,24 @@
     };
 
     amazonController.prototype.removeClient = function(clientCtr) {
+
         this.clients.removeClient(clientCtr);
+    };
+
+    amazonController.prototype.startGateway = function() {
+
+        alert("clicked");
+
+        this.settingsFact.startGateway()
+            .success(function (data) {
+
+                this.gatewayStatus = "On";
+
+            })
+            .error(function (err, status) {
+                //alert("error from controller" + err)
+                this.gatewayStatus = "Off";
+            })
     };
 
 })();
