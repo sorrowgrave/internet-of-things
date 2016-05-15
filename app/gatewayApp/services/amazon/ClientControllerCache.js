@@ -6,7 +6,7 @@
 (function () {
     'use strict';
 
-    angular.module('gatewayApp').service('ClientControllerCache', function () {
+    angular.module('gatewayApp').service('ClientControllerCache',['MQTTClient', 'ClientController', function (MQTTClient, ClientController) {
 
         function ClientControllerCache(scope, logs) {
             this.scope = scope;
@@ -36,6 +36,8 @@
             this.val.splice(index, 1);
         };
 
-    });
+        return ClientControllerCache;
+
+    }]);
 
 })();

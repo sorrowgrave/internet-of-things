@@ -1,0 +1,26 @@
+<div>
+    <form id="cloudForm" ng-submit="settingsGatewayCtrl.updateCloud()">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="gatewayName">Gateway Name: </label>
+                    <input type="text" class="form-control" id="gatewayName" placeholder="Gateway Name"
+                           ng-model="settingsGatewayCtrl.gatewayName">
+                </div>
+                <div class="form-group">
+                    <label for="baudRate">Baud Rate: </label>
+                    <input type="text" class="form-control" id="baudRate" placeholder="if unknown, use 9600"
+                           ng-model="settingsGatewayCtrl.baudRate">
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="serialPort">Serial Port: </label>
+                    <input type="text" class="form-control" id="serialPort" placeholder="e.g. /dev/ttyUSB0"
+                           ng-model="settingsGatewayCtrl.SerialPort">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

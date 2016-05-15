@@ -2,14 +2,14 @@
     "configuration": {
         "cloud": {
             "amazon": {
-                "endPoint": "someEndpointdert",
+                "endPoint": "A3C4IZQXVVC0WR.iot.eu-west-1.amazonaws.com",
                 "region": "eu-west-1",
                 "clientId": "someClientId",
-                "accessKey": "someAccessKey",
-                "secretKey": "someSecretKey"
+                "accessKey": "AKIAJF7LJRJEXIGWC6HQ",
+                "secretKey": "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"
             },
             "azure": {
-                "connectionString": "someConnectionString"
+                "connectionString": "HostName=raspberry-pxl.azure-devices.net;DeviceId=raspberry-pi;SharedAccessKey=oPiwMygHx2KFVqi1SrAJVRUiLwsYNlnIRV9lWgTEjJ4="
             }
         },
         "backUp": {

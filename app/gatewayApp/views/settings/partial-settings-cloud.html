@@ -1,0 +1,44 @@
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" ui-sref-active="active"><a ui-sref="settings.cloud.amazon" aria-controls="amazon">Amazon</a></li>
+        <li role="presentation" ui-sref-active="active"><a ui-sref="settings.cloud.azure" aria-controls="azure">Azure</a></li>
+    </ul>
+    <form id="cloudForm" ng-submit="settingsCloudCtrl.updateCloud()">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane" ui-sref="settings.cloud.amazon" ui-sref-active="active" >
+                <div class="row" >
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="endpoint">Endpoint: </label>
+                            <input type="text" class="form-control" id="endpoint" placeholder="EndPoint" ng-model="settingsCloudCtrl.cloud.amazon.endPoint">
+                        </div>
+                        <div class="form-group">
+                            <label for="region">Region: </label>
+                            <input type="text" class="form-control" id="region" placeholder="region" ng-model="settingsCloudCtrl.cloud.amazon.region">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="clientId">Client id: </label>
+                            <input type="text" class="form-control" id="clientId"  placeholder="SomeClientId" ng-model="settingsCloudCtrl.cloud.amazon.clientId"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="accessKey">Access key: </label>
+                            <input type="text" class="form-control" id="accessKey"  placeholder="AWS access key" ng-model="settingsCloudCtrl.cloud.amazon.accessKey"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="secretKey">Secret Key: </label>
+                            <input type="password" class="form-control" id="secretKey"  placeholder="AWS secret key" ng-model="settingsCloudCtrl.cloud.amazon.secretKey">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" ui-sref="settings.cloud.azure" ui-sref-active="active">
+                <div class="form-group">
+                    <label for="endpoint">Connectionstring: </label>
+                    <input type="text" class="form-control" id="connectionstring" placeholder="Connectionstring" ng-model="settingsCloudCtrl.cloud.azure.connectionString">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

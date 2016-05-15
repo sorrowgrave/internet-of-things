@@ -23,7 +23,7 @@
                 })
 
                 .error(function (data, status, headers, config) {
-                    alert("Error." + status);
+                    //alert("Error." + status);
                 })
         };
 
@@ -39,7 +39,19 @@
                 })
 
                 .error(function (data, status, headers, config) {
-                    alert("Error." + status);
+                    //alert("Error." + status);
+                })
+        };
+
+        factory.startGateway = function(){
+            return $http.get('http://localhost:3000/gateway/start/script/amazon')
+
+                .success(function (data, status, headers, config) {
+
+                })
+
+                .error(function (data, status, headers, config) {
+                    //alert("Error." + status);
                 })
         };
 
