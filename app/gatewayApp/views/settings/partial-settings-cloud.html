@@ -34,9 +34,31 @@
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" ui-sref="settings.cloud.azure" ui-sref-active="active">
-                <div class="form-group">
-                    <label for="endpoint">Connectionstring: </label>
-                    <input type="text" class="form-control" id="connectionstring" placeholder="Connectionstring" ng-model="settingsCloudCtrl.cloud.azure.connectionString">
+                <div class="row" >
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="eventHubHost">Event-Hub Host: </label>
+                            <input type="text" class="form-control" id="eventHubHost" placeholder="*.servicebus.windows.net" ng-model="settingsCloudCtrl.cloud.amazon.eventHubHost">
+                        </div>
+                        <div class="form-group">
+                            <label for="eventHubName">Event-Hub Name: </label>
+                            <input type="text" class="form-control" id="eventHubName" placeholder="iothub-ehub-[IoT Hub Name]-[number]-[number]" ng-model="settingsCloudCtrl.cloud.amazon.eventHubName">
+                        </div>
+                        <div class="form-group">
+                            <label for="numPartitions">Number of Partitions: </label>
+                            <input type="password" class="form-control" id="numPartitions"  placeholder="e.g. 2" ng-model="settingsCloudCtrl.cloud.amazon.numPartitions">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="sasName">SAS Name: </label>
+                            <input type="text" class="form-control" id="sasName"  placeholder="Policy Name, default: iothubowner" ng-model="settingsCloudCtrl.cloud.amazon.sasName"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="sasKey">SAS Key: </label>
+                            <input type="text" class="form-control" id="sasKey"  placeholder="Primary key of corresponding Policy" ng-model="settingsCloudCtrl.cloud.amazon.sasKey"/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

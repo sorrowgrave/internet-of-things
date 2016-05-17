@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-'use strict';
 
 //var Amqp = require('azure-iot-device-amqp').Amqp;
 // Uncomment one of these transports and then change it in fromConnectionString to test other transports
@@ -87,3 +86,25 @@ function printResultFor(op) {
   };
 }
 
+SoftwareSerial XBee(2, 3); // RX, TX
+
+void setup()
+{
+  // Set up both ports at 9600 baud. This value is most important
+  // for the XBee. Make sure the baud rate matches the config
+  // setting of your XBee.
+  XBee.begin(9600);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  if (Serial.available())
+  { // If data comes in from serial monitor, send it out to XBee
+    XBee.write(Serial.read());
+  }
+  if (XBee.available())
+  { // If data comes in from XBee, send it out to serial monitor
+    Serial.write(XBee.read());
+  }
+}

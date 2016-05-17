@@ -4,6 +4,7 @@
   "description": "service for configuration of the gateway and the sensor network",
   "main": "server.js",
   "dependencies": {
+    "azure-iot-device": "^1.0.6",
     "body-parser": "^1.15.0",
     "express": "^4.13.4"
   },
