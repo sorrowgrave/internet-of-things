@@ -16,6 +16,18 @@ $(document).ready(function() {
 
 });
 
+
+function browseFile(element)
+{
+    //var ele = $(element).parent().parent().find('input.file');
+    $('input[type=file]').trigger('click');
+
+    //ele.text('dedede');
+    //ele.click();
+
+    //$(element).closest('input').find('.file').click();
+}
+
 function rotate(element)
 {
     var index = $(element).index();

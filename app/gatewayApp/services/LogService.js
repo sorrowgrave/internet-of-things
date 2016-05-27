@@ -28,9 +28,6 @@
             this.logs.push(logObj);
         };
 
-        LogService.prototype.test = function (msg) {
-            alert("test logserv");
-        };
 
         LogService.prototype.logError = function (msg) {
             var logObj = new LogMsg('error', msg);

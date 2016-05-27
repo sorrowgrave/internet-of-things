@@ -4,12 +4,12 @@
 
 (function () {
     'use strict';
-    angular.module('gatewayApp').controller('amazonController', ['$scope', 'LogService', 'ClientControllerCache', 'settingsFactory', amazonController]);
 
-    function amazonController(scope, LogService, ClientControllerCache, settingsFactory) {
+    angular.module('gatewayApp').controller('amazonController', ['$scope', 'LogService', 'ClientServiceCache', 'settingsFactory', amazonController]);
+
+    function amazonController(scope, LogService, ClientServiceCache, settingsFactory) {
 
         var vm = this;
-        var bool = false;
 
         console.log(JSON.stringify(vm.cloud));
 
@@ -36,9 +36,9 @@
 
 
         vm.logs = new LogService();
-        vm.clients = new ClientControllerCache(scope, this.logs);
-        vm.gatewayStatus = "Off";
+        vm.clients = new ClientServiceCache(scope, this.logs);
 
+        vm.gatewayStatus = "On";
     }
 
     //amazonController.$inject = ['$scope'];
@@ -66,20 +66,26 @@
         this.clients.removeClient(clientCtr);
     };
 
-    amazonController.prototype.startGateway = function() {
+    amazonController.prototype.invokeAmazon = function() {
 
-        alert("clicked");
+        var vm = this;
+        vm.cooldown = true;
+        var log;
 
-        this.settingsFact.startGateway()
-            .success(function (data) {
+            vm.settingsFact.invokeAmazon()
+                .success(function (data) {
 
-                this.gatewayStatus = "On";
+                    log = data ? "On" : "Off";
+                    vm.logs.log("successfully turned " + log);
+                    vm.gatewayStatus = data ? "Off" : "On";
+                    vm.cooldown = false;
 
-            })
-            .error(function (err, status) {
-                //alert("error from controller" + err)
-                this.gatewayStatus = "Off";
-            })
-    };
+                })
+                .error(function (err, status) {
+                    vm.logs.logError("Failed processing request: " + err);
+                    vm.gatewayStatus = "Error";
+                    vm.cooldown = false;
+                })
+        }
 
 })();

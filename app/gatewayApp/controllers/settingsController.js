@@ -34,11 +34,6 @@
             settingsFactory.updateCloudSettings(vm.cloud)
                 .success(function (data) {
 
-                    /*                    vm.amazon = data.amazon;
-                     vm.azure = data.azure;*/
-
-                    //alert("data received");
-
 
                 })
                 .error(function (err, status) {

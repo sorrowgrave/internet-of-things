@@ -6,7 +6,7 @@
 
 body {
     margin-bottom: 60px;
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    margin-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
 a.btn-primary:focus, .btn-primary, .btn-primary:hover, .btn-primary:focus, .btn-primary:active:focus{
@@ -176,6 +176,10 @@ div.hero-feature > div.thumbnail > img {
     height:54px;
 }
 
+.file {
+    visibility: hidden;
+    position: absolute;
+}
 
 
 footer {

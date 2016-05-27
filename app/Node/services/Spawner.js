@@ -9,26 +9,34 @@ var process;
 var spawner = Spawner.prototype;
 
 function Spawner(path){
+
     this.path = path;
+    this.running = false
 }
 
 spawner.runScript = function(callback) {
 
-    // keep track of whether callback has been invoked to prevent multiple invocations
+
+    // controleer of de callback eerder werd getriggerd
     var invoked = false;
 
-    process = childProcess.fork(this.path);
+    if(!this.running)
+    {
+        process = childProcess.fork(this.path);
+        console.log("PID started" + process.pid);
+        this.running = true;
+    }
+    else
+        return;
 
-    console.log("PID started" + process.pid);
-
-    // listen for errors as they may prevent the exit event from firing
+    // luister naar errors die het exit event kunnen omzeilen
     process.on('error', function (err) {
         if (invoked) return;
         invoked = true;
         callback(err);
     });
 
-    // execute the callback once the process has finished running
+    // voer de callback uit eenmaal het exit event is getriggerd
     process.on('exit', function (code) {
         if (invoked) return;
         invoked = true;
@@ -36,24 +44,29 @@ spawner.runScript = function(callback) {
         callback(err);
     });
 
-    // SIGTERM AND SIGINT will trigger the exit event.
+    // SIGTERM en SIGINT triggeren het exit event
     process.once("SIGTERM", function () {
+        console.log("SIGTERM");
         process.exit(0);
     });
     process.once("SIGINT", function () {
+        console.log("SIGINT");
         process.exit(0);
     });
-// And the exit event shuts down the child.
-    process.once("exit", function () {
-        //child.shutdown();
-    });
+
+    // Exit event kan het childprocess stoppen indien nodig
+/*    process.once("exit", function () {
+        child.shutdown();
+    });*/
 
 };
 
 spawner.stopScript = function(){
-    // Get rid of the exit listener since this is a planned exit.
-    //process.removeListener("exit", this.onUnexpectedExit);
-    process.kill();
+
+    if(this.running)
+        process.kill(-childProcess.pid, 'SIGTERM');
+
+    this.running = false;
 };
 
 module.exports = Spawner;

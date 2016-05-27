@@ -8,14 +8,13 @@
 
     angular.module("gatewayApp")
 
-        .directive('rotate', [function () {
+        .directive('filebrowser', [function () {
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
-                element.bind('click', function () {
-                    rotate(element);
-                });
+                document.getElementById('file').change();
+
             }
         };
-    }]).directive('switch', ['frapontillo.bootstrap-switch']) ;
+    }])
 })();

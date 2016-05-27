@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu" style="height:700px;">
+            <div class="list-group">
+                <a ui-sref="features.amazon" class="list-group-item text-center" ui-sref-active="active">
+                    <div class="amazon"></div>
+                </a>
+                <a ui-sref="features.azure" class="list-group-item text-center" ui-sref-active="active">
+                    <div class="azure"></div>
+                </a>
+                <a href="" class="list-group-item text-center" ng-click="settingsCtrl.test()">
+                    <h4 class="fa fa-undo fa-lg"></h4><br/>Back-up Data
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab" style="height:700px;">
+            <div class="bhoechie-tab-content active">
+                <div>
+                    <ui-view></ui-view>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

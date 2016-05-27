@@ -1,0 +1,49 @@
+
+<div class="panel panel-info" ng-repeat="clientCtrl in amazonCtrl.clients.val" style="margin-top:15px;">
+
+    <div class="panel-body row col-md-12">
+        <div class="form-group col-md-6 col-xs-12">
+            <button class="btn btn-primary" ng-click="azureCtrl.startGateway()">Connect</button>
+            <label for="startGateway">Gateway: </label>
+            <button class="btn btn-primary" id="startGateway" ng-disabled="azureCtrl.cooldown" ng-click="azureCtrl.invokeAzure()">{{azureCtrl.gatewayStatus}}</button>
+        </div>
+        <div class="panel-heading">
+            <button type="button" class="close" ng-click="azureCtrl.removeClient(clientCtrl)"><span>&times;</span></button>
+            <h3 class="panel-title">Client {{::clientCtrl.client.name}}</h3>
+        </div>
+        <div class="col-md-6">
+            <p>Subscribe to see the messages published to the topic on the left.</p>
+            <div class="form-inline">
+                <div class="form-group">
+                    <label for="topicInput">Topic: </label>
+                    <input type="text" class="form-control" id="topicInput" placeholder="Topic"
+                           ng-model="clientCtrl.topicName"/>
+                </div>
+                <button class="btn btn-primary" ng-click="clientCtrl.subscribe()">Subscribe</button>
+            </div>
+            <!--            <div>
+                            <p>Press enter in the text box to send message to topic : {{clientCtrl.topicName}} </p>
+                            <textarea id="messageInput" ng-disabled="!clientCtrl.topicName" ng-model="clientCtr.message" placeholder="message to send" ng-keyup="clientCtrl.msgInputKeyUp($event)"></textarea>
+                        </div>-->
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-info"> <!-- ng-repeat="msg in clientCtrl.msgs" -->
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{clientCtrl.msg.destination}} -> {{clientCtrl.msg.receivedTime | date:
+                        'medium'}}</h3>
+                </div>
+                <div class="panel-body" style="font-size: 30px;"> {{azureCtrl.message}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+</canvas>
+<p>{{azureCtrl.message}}</p>
+<div class="row col-md-12" style="position: absolute; bottom: 0px; margin-top:70px; height:300px; overflow: hidden;">
+    <ul class="list-group" style="margin-right:25px; height:250px; overflow-y: scroll;">
+        <li ng-repeat="log in azureCtrl.logs.logs | orderBy:'createdTime':true" class="list-group-item"
+            ng-class="log.className">
+            {{log.createdTime | date: 'medium'}} - {{log.content}}
+        </li>
+    </ul>
+</div>

@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    angular.module('gatewayApp', ['ui.router', 'ngResource', 'uiSwitch']).config(function($stateProvider, $urlRouterProvider) {
+    angular.module('gatewayApp').config(function($stateProvider, $urlRouterProvider) {
 
         $urlRouterProvider.otherwise('/home');
 
@@ -22,6 +22,9 @@
 
         });
 
+        $urlRouterProvider.when('/settings/gateway', '/settings/gateway/general');
+        $urlRouterProvider.when('/settings/cloud', '/settings/cloud/amazon');
+
         $stateProvider
 
             .state('home', {
@@ -37,12 +40,12 @@
 
             .state('features', {
                 url: '/features',
-                templateUrl: 'views/partial-features.html'
+                templateUrl: 'views/features/partial-features.html'
             })
 
             .state('features.amazon', {
                 url: '/amazon',
-                templateUrl: 'views/partial-amazon.html',
+                templateUrl: 'views/features/partial-features-amazon.html',
                 controller: 'amazonController',
                 controllerAs: 'amazonCtrl',
 
@@ -51,7 +54,7 @@
 
             .state('features.azure', {
                 url: '/azure',
-                templateUrl: 'views/partial-amazon.html',
+                templateUrl: 'views/features/partial-features-azure.html',
                 controller: 'azureController',
                 controllerAs: 'azureCtrl'
 
@@ -76,7 +79,19 @@
                 templateUrl: 'views/settings/partial-settings-gateway.html',
                 controller: 'settingsGatewayController',
                 controllerAs: 'settingsGatewayCtrl'
+            })
 
+            .state('settings.gateway.general', {
+                url: '/general'
+
+            })
+
+            .state('settings.gateway.amazon', {
+                url: '/amazon'
+            })
+
+            .state('settings.gateway.azure', {
+                url: '/azure'
             })
 
             .state('settings.cloud', {

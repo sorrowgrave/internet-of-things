@@ -13,7 +13,7 @@ var amazonSpawner = new Spawner('services/Amazon.js');
 var azureSpawner = new Spawner('services/Azure.js');
 
 
-router.post('/gateway/modify/config/:spec', function (req, res, next) {
+router.post('/gateway/modify/config/:spec', function (req, res) {
 
     console.log("Cloud settings put" );
 
@@ -23,17 +23,12 @@ router.post('/gateway/modify/config/:spec', function (req, res, next) {
 
     config.configuration[spec] = req.body;
 
-    jsonfile.writeFileSync(file, config, {spaces: 4})
-
-    //config.save(file);
+    jsonfile.writeFileSync(file, config, {spaces: 4});
 
     res.send(spec);
-
-    //next();
-
 });
 
-router.get('/gateway/get/config/:spec/:spec2*?', function (req, res, next) {
+router.get('/gateway/get/config/:spec/:spec2*?', function (req, res) {
 
     var spec = req.params.spec;
     var spec2 = req.params.spec2;
@@ -49,38 +44,41 @@ router.get('/gateway/get/config/:spec/:spec2*?', function (req, res, next) {
 });
 
 
-router.get('/gateway/start/script/amazon', function (req, res, next) {
-// executes `pwd`
+router.get('/gateway/invoke/script/amazon', function (req, res) {
 
-    var cloud = req.params.cloud;
+    if(!amazonSpawner.running)
+    {
+        amazonSpawner.runScript(function (err) {
+            console.log('Finished running Amazon.js with ' + err);
+            amazonSpawner.running = false;
+        });
+    }
+    else
+    {
+        amazonSpawner.stopScript();
+    }
 
-
-// Now we can run a script and invoke a callback when complete, e.g.
-
-    amazonSpawner.runScript(function (err) {
-        console.log('finished running some-script.js');
-    });
-/*
-    amazon.start();*/
-    res.send("app started");
-
-});
-
-router.get('/gateway/stop/script/amazon', function (req, res, next) {
-// executes `pwd`
-
-    amazonSpawner.stopScript();
-
-    res.send("app stopped");
+    res.send(amazonSpawner.running ? "Off" : "On");
 
 });
 
-router.get('/gateway/script/status/amazon', function (req, res, next) {
-// executes `pwd`
 
-    res.send(amazon.status());
+router.get('/gateway/invoke/script/azure', function (req, res) {
+
+    if(!azureSpawner.running)
+    {
+        azureSpawner.runScript(function (err) {
+            console.log('Finished running Azure.js with ' + err);
+            azureSpawner.running = false;
+        });
+    }
+    else
+    {
+        azureSpawner.stopScript();
+    }
+
+    res.send(azureSpawner.running);
 
 });
-
 
 module.exports = router;

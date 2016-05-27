@@ -1,40 +1,5 @@
 var awsIot = require('aws-iot-device-sdk');
-
-var serialport = require("serialport");
-var SerialPort = serialport.SerialPort;
-
-var status = "Down";
-
-
-/*
-var serialPort = new SerialPort("/dev/ttyACM0", {
-    baudrate: 9600,
-    parser: serialport.parsers.readline("\n")
-});
-*/
-//
-// The current operation count
-//
-
-//exports.status = function(){
-//    return status;
-//};
-//
-//exports.stop = function(){
-//    if(status == "Running")
-//    {
-//        process.exit(1);
-//        status = "Down";
-//    }
-//};
-//
-//exports.start = function(){
-
-    status = "Running";
-
-    var serialPort = new SerialPort("/dev/ttyUSB0", {
-        baudrate: 9600
-    }, false);
+var serialPort = require('../serialport/Serial.js');
 
     var myThingName = 'raspberrypi';
 
@@ -52,13 +17,13 @@ var serialPort = new SerialPort("/dev/ttyACM0", {
                 "ip": "unknown"
             }
         }
-    }
+    };
 
 /*    var networkInterfaces = require( 'os' ).networkInterfaces( );
 
     mythingstate["state"]["reported"]["ip"] = networkInterfaces['eth0'][0]['address'];*/
 
-    var i = 1;
+/*    var i = 1;
     function myLoop () {           //  create a loop function
         setTimeout(function () {    //  call a 3s setTimeout when the loop is called
             thingShadows.publish('temp', i.toString());
@@ -70,20 +35,8 @@ var serialPort = new SerialPort("/dev/ttyACM0", {
         }, 3000)
     }
 
-    myLoop();
+    myLoop();*/
 
-
-    serialPort.on("open", function () {
-        console.log('open');
-        myLoop();                      //  start the loop
-        serialPort.on('data', function(data) {
-
-            console.log(data);
-            if(! isNaN(data))
-                thingShadows.publish('temp', data);
-            //
-        });
-    });
 
     thingShadows.on('connect', function() {
         console.log("Connected...");
