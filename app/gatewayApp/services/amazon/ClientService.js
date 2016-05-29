@@ -4,11 +4,11 @@
 (function () {
     'use strict';
 
-    angular.module('gatewayApp').service('ClientService', function () {
+    angular.module('gatewayApp').service('ClientService', ['SensorService', function (SensorService) {
 
         function ReceivedMsg(msg) {
             this.msg = msg;
-            this.content = msg.payloadString;
+            this.content = JSON.parse(msg.payloadString);
             this.destination = msg.destinationName;
             this.receivedTime = Date.now();
         }
@@ -19,17 +19,29 @@
             this.message = null;
             //this.msgs = [];
             this.msg = {};
-            this.data = [];
             this.logs = logs;
+            this.sensorService = new SensorService();
+
             var self = this;
 
             this.client.on('connectionLost', function () {
                 self.logs.logError('Connection lost');
             });
             this.client.on('messageArrived', function (msg) {
-                self.logs.log('messageArrived in ' + self.id);
+
                 self.msg = new ReceivedMsg(msg);
-                self.data[0].push(msg);
+                self.logs.log('messageArrived in ' + self.id);
+
+                if(!self.sensorService.check(self.msg.content.sensor))
+                {
+                    self.sensorService.add(self.msg.content.sensor, self.msg.content.hardware, self.msg.content.data)
+                }
+                else
+                {
+                    self.sensorService.update(self.msg.content.sensor, self.msg.content.data);
+                }
+
+                //self.data[0].push(msg);
             });
             this.client.on('connected', function () {
                 self.logs.log('connected');
@@ -61,5 +73,5 @@
 
         return ClientService;
 
-    });
+    }]);
 })();

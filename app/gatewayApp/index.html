@@ -27,6 +27,8 @@
 
     <!-- Bower -->
 
+    <script type="text/javascript" src="bower_components/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bower_components/socket.io-client/socket.io.js"></script>
     <script type="text/javascript" src="bower_components/moment/moment.js"></script>
     <script type="text/javascript" src="bower_components/paho-mqtt-js/mqttws31.js"></script>
     <script type="text/javascript" src="bower_components/cryptojslib/rollups/sha256.js"></script>
@@ -34,11 +36,6 @@
     <script src="bower_components/Chart.js/Chart.js"></script>
     <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
     <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
-
-
-    <!-- Node -->
-
-    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 
     <!-- Bootstrap -->
 
@@ -55,6 +52,8 @@
     <script type="text/javascript" src="services/amazon/ClientServiceCache.js"></script>
     <script type="text/javascript" src="services/amazon/MQTTClient.js"></script>
     <script type="text/javascript" src="services/amazon/SigV4Utils.js"></script>
+    <script type="text/javascript" src="services/sensor/Sensor.js"></script>
+    <script type="text/javascript" src="services/sensor/SensorService.js"></script>
 
     <!-- Directives -->
 
@@ -125,7 +124,6 @@
         <!-- /.row -->
 
         <hr>
-
         <!-- Footer -->
         <footer>
             <div class="row" style="text-align: center; line-height: 60px;">

@@ -41,7 +41,7 @@
         vm.gatewayStatus = "On";
     }
 
-    //amazonController.$inject = ['$scope'];
+    amazonController.$inject = ['$scope'];
 
     amazonController.prototype.createClient = function() {
 
@@ -66,13 +66,13 @@
         this.clients.removeClient(clientCtr);
     };
 
-    amazonController.prototype.invokeAmazon = function() {
+    amazonController.prototype.provokeAmazon = function() {
 
         var vm = this;
         vm.cooldown = true;
         var log;
 
-            vm.settingsFact.invokeAmazon()
+            vm.settingsFact.provokeAmazon()
                 .success(function (data) {
 
                     log = data ? "On" : "Off";
@@ -82,9 +82,9 @@
 
                 })
                 .error(function (err, status) {
-                    vm.logs.logError("Failed processing request: " + err);
+                    //alert("error from controller" + err)
+                    vm.logs.logError("Failed to process request " + err);
                     vm.gatewayStatus = "Error";
-                    vm.cooldown = false;
                 })
         }
 

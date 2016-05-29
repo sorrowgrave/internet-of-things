@@ -16,7 +16,7 @@
 
                 if (spec2 === undefined) spec2 = '';
 
-                return $http.get('http://10.31.0.13:3000/gateway/get/config/' + spec1 + '/' + spec2)
+                return $http.get('http://192.168.1.156:3000/gateway/get/config/' + spec1 + '/' + spec2)
 
                     .success(function (data, status, headers, config) {
 
@@ -32,7 +32,7 @@
 
                 console.log(JSON.stringify(cloud));
 
-                return $http.post('http://10.31.0.13:3000/gateway/modify/config/cloud', cloud)
+                return $http.post('http://192.168.1.156:3000/gateway/modify/config/cloud', cloud)
 
                     .success(function (data, status, headers, config) {
 
@@ -44,8 +44,8 @@
                     })
             },
 
-            invokeAmazon: function () {
-                return $http.get('http://10.31.0.13:3000/gateway/invoke/script/amazon')
+            provokeAmazon: function () {
+                return $http.get('http://192.168.1.156:3000/gateway/invoke/script/amazon')
 
                     .success(function (data, status, headers, config) {
 
@@ -56,8 +56,8 @@
                     })
             },
 
-            invokeAzure: function () {
-                return $http.get('http://10.31.0.13:3000/gateway/invoke/script/azure')
+            provokeAzure: function () {
+                return $http.get('http://192.168.1.156:3000/gateway/invoke/script/azure')
 
                     .success(function (data, status, headers, config) {
 

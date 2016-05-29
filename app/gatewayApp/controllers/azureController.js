@@ -5,49 +5,57 @@
 
 (function () {
     'use strict';
-    angular.module('gatewayApp').controller('azureController', ['$scope', 'LogService', 'ClientServiceCache', 'settingsFactory', 'socketFactory', azureController]);
+    angular.module('gatewayApp').controller('azureController', ['LogService', 'SensorService', 'settingsFactory', 'socketFactory', azureController]);
 
 
-    function azureController(scope, LogService, ClientServiceCache, settingsFactory, socketFactory) {
+    function azureController(LogService, SensorService, settingsFactory, socketFactory) {
 
         var vm = this;
 
         vm.settingsFact = settingsFactory;
         vm.logs = new LogService();
-
-        socketFactory.on('connection', function () {
-            console.log("lelele");
-        });
+        vm.sensorService = new SensorService();
+        vm.gatewayStatus = "On";
 
         socketFactory.on('azure:message', function (msg) {
 
-            console.log(msg.body);
-            vm.message = msg.body.windSpeed;
+            if(!vm.sensorService.check(msg.body.sensor))
+            {
+                vm.sensorService.add(msg.body.sensor, msg.body.hardware, msg.body.data)
+            }
+            else
+            {
+                vm.sensorService.update(msg.body.sensor, msg.body.data);
+            }
+
         });
 
+        socketFactory.on('azure:scriptstatus', function (msg) {
+
+            console.log(msg);
+            vm.gatewayStatus = msg;
+        });
 
     }
 
-    azureController.prototype.invokeAzure = function (scope, LogService) {
+    azureController.prototype.provokeAzure = function () {
 
         var vm = this;
         vm.cooldown = true;
         var log;
 
-        vm.settingsFact.invokeAzure()
+        vm.settingsFact.provokeAzure()
             .success(function (data) {
 
                 log = data ? "On" : "Off";
                 vm.logs.log("successfully turned " + log);
-                vm.gatewayStatus = data ? "Off" : "On";
                 vm.cooldown = false;
 
             })
             .error(function (err, status) {
 
-                vm.logs.logError("Failed processing request: " + err);
+                vm.logs.logError("Failed to process request " + err);
                 vm.gatewayStatus = "Error";
-                vm.cooldown = false;
             });
 
 

@@ -1,0 +1,36 @@
+{
+  "name": "gatewayapp",
+  "description": "Front-end web application for communicating with an IoT field gateway.",
+  "main": "index.html",
+  "keywords": [
+    "IoT",
+    "GateWay",
+    "Arduino",
+    "UNO",
+    "Raspberry",
+    "Pi",
+    "Amazon",
+    "Azure"
+  ],
+  "authors": [
+    "Kenny Vanrusselt"
+  ],
+  "license": "MIT",
+  "homepage": "index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-chart.js": "^0.10.2",
+    "cryptojslib": "^3.1.2",
+    "moment": "^2.13.0",
+    "paho-mqtt-js": "^1.0.1",
+    "socket.io-client": "^1.4.6",
+    "socket.io": "^1.4.6"
+  }
+}

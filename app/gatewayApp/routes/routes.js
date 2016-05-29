@@ -48,8 +48,6 @@
                 templateUrl: 'views/features/partial-features-amazon.html',
                 controller: 'amazonController',
                 controllerAs: 'amazonCtrl',
-
-
             })
 
             .state('features.azure', {
