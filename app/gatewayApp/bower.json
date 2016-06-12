@@ -31,6 +31,7 @@
     "moment": "^2.13.0",
     "paho-mqtt-js": "^1.0.1",
     "socket.io-client": "^1.4.6",
-    "socket.io": "^1.4.6"
+    "socket.io": "^1.4.6",
+    "hashmap": "^2.0.5"
   }
 }

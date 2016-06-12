@@ -6,21 +6,23 @@
         </button>
     </div>
 </div>
-<div ng-repeat="sensor in azureCtrl.sensorService.sensors" style="margin-top:30px;">
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active">
-                <a ui-sref="sensor.sensor" aria-controls="sensor.name" role="tab" data-toggle="tab">{{::sensor.sensor}} - {{::sensor.hardware}} - Active since: {{::sensor.createdTime}}</a>
-            </li>
-        </ul>
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="sensor.name">
-                <p ng-bind="sensor.data"></p>
-            </div>
+<div ng-repeat="sensor in azureCtrl.sensorService.sensors">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active" style="margin-top:30px;">
+            <a ui-sref="sensor.sensor" aria-controls="sensor.name" role="tab" data-toggle="tab">{{::sensor.sensor}} -
+                {{::sensor.hardware}} - Active since: {{sensor.createdTime | date: 'medium'}}</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="sensor.name">
+            <p ng-bind="sensor.data"></p>
         </div>
+    </div>
 </div>
 <div class="col-lg-12" style="position: absolute; bottom:0px; right:0px; height:248px; width:100%; overflow: hidden; ">
     <div style="width:100%; position: absolute;">
-        <ul class="col-lg-12 col-md-12 col-sm-12 col-xs-12 list-group" style="width:101.5%; height:248px; position: relative; overflow-y: scroll;">
+        <ul class="col-lg-12 col-md-12 col-sm-12 col-xs-12 list-group"
+            style="width:101.5%; height:248px; position: relative; overflow-y: scroll;">
             <li ng-repeat="log in azureCtrl.logs.logs | orderBy:'createdTime':true" class="list-group-item"
                 ng-class="log.className">
                 {{log.createdTime | date: 'medium'}} - {{log.content}}

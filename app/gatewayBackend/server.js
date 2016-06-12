@@ -16,21 +16,7 @@ var bodyParser = require('body-parser');
 var routes = require('./router/index');
 var sockets = require('./socketio/sockets.js')(io);
 
-/*client.set('framework', 'AngularJS', function(err, reply) {
-    console.log(reply);
-});
-
-client.on('connect', function(){
-   console.log('connected');
-});*/
-
-
-
-//io.adapter(redisIO({ host: 'localhost', port: 6379 }));
-
 // 2 .App instellen
-
-//var server = http.createServer(app);
 
 // CORS toegangsrechten voor http requests
 app.use(function(req, res, next) {
@@ -65,31 +51,3 @@ server.listen(3000, function () {
     console.log('Express app gestart op localhost:3000');
 });
 
-//io = require('socket.io').listen(server);
-io.emit('azure:message', 'lololol');
-
-/*io.on('connection', function(socket){
-    console.log('a user connected');
-
-    clients.push(socket);
-
-    socket.on('disconnect', function(){
-        console.log('user disconnected');
-        var index = clients.indexOf(socket);
-        if (index != -1) {
-            clients.splice(index, 1);
-            console.info('Client gone (id=' + socket.id + ').');
-        }
-    });
-});*/
-
-
-// Every 1 second, sends a message to a random client:
-/*
-setInterval(function() {
-    var randomClient;
-    if (clients.length > 0) {
-        randomClient = Math.floor(Math.random() * clients.length);
-        clients[randomClient].emit('foo', sequence++);
-    }
-}, 1000);*/

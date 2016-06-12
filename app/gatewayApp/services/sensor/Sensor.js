@@ -11,8 +11,8 @@
 
     angular.module('gatewayApp').service('Sensor', function () {
 
-        function Sensor(sensor, hardware, data) {
-            this.sensor = sensor;
+        function Sensor(sensorName, hardware, data) {
+            this.sensor = sensorName;
             this.hardware = hardware;
             this.createdTime = Date.now();
             this.data = data;

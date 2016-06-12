@@ -11,8 +11,6 @@
 
         var vm = this;
 
-        console.log(JSON.stringify(vm.cloud));
-
         vm.settingsFact = settingsFactory;
 
         vm.settingsFact.getCloudSettings('cloud', 'amazon')

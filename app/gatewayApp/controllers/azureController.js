@@ -12,10 +12,10 @@
 
         var vm = this;
 
+        vm.gatewayStatus = "On";
         vm.settingsFact = settingsFactory;
         vm.logs = new LogService();
         vm.sensorService = new SensorService();
-        vm.gatewayStatus = "On";
 
         socketFactory.on('azure:message', function (msg) {
 

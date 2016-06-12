@@ -36,26 +36,17 @@ module.exports = function (cloud, client) {
             }
 
             console.log("open");
-            //port.write('main screen turn on');
 
             port.on('data', function (data) {
-
                 console.log(data);
                 sendMethod(data);
-
             });
-
-            // errors will be emitted on the port since there is no callback to write
-
         });
 
         xbeeAPI.on("frame_object", function (frame) {
-
             data = (frame.data).toString("UTF-8");
-
             console.log(">>", data);
             sendMethod(data);
-
         });
 };
 
@@ -70,7 +61,6 @@ function CreateSender(cloud, client){
     {
         sendMethod = function (data) {
             var message = new Message(data);
-            message.properties.add('myproperty', 'myvalue');
             client.sendEvent(message);
         };
     }

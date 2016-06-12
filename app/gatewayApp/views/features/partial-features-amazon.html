@@ -25,7 +25,8 @@
     <div ng-repeat="sensor in clientCtrl.sensorService.sensors">
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active" style="margin-top:30px;">
-                <a ui-sref="sensor.sensor" aria-controls="sensor.name" role="tab" data-toggle="tab">{{::sensor.sensor}} - {{::sensor.hardware}} - Active since: {{::sensor.createdTime}}</a>
+                <a ui-sref="sensor.sensor" aria-controls="sensor.name" role="tab" data-toggle="tab">{{::sensor.sensor}} - {{::sensor.hardware}} - Active since:
+                    {{sensor.createdTime | date: 'medium'}}</a>
             </li>
         </ul>
         <div class="tab-content">

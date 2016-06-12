@@ -24,7 +24,6 @@ var serialPort = require('../serialio/Serial.js')('azure',client);
 
     return token;
 }*/
-
 /*var generateSasToken = function(resourceUri, signingKey, policyName, expiresInMins) {
  resourceUri = encodeURIComponent(resourceUri.toLowerCase()).toLowerCase();
 

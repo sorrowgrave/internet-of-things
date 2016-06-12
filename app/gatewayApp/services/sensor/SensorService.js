@@ -19,6 +19,7 @@
         }
 
         SensorService.prototype.add = function (sensor, hardware, data) {
+
             var sensorNode = new Sensor(sensor, hardware, data);
             this.sensors.push(sensorNode);
             this.connSensors.push(sensor);

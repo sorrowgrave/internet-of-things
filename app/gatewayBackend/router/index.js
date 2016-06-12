@@ -17,7 +17,7 @@ var io = require('socket.io-emitter')({ host: 'localhost', port: 6379 });
 
 router.post('/gateway/modify/config/:spec', function (req, res) {
 
-    console.log("Cloud settings put" );
+    console.log("Cloud settings posted" );
 
     console.log(JSON.stringify(req.body ) + "data");
 

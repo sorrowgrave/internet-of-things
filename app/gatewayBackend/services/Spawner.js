@@ -54,11 +54,6 @@ spawner.runScript = function(callback) {
         process.exit(0);
     });
 
-    // Exit event kan het childprocess stoppen indien nodig
-/*    process.once("exit", function () {
-        child.shutdown();
-    });*/
-
 };
 
 spawner.stopScript = function(){
