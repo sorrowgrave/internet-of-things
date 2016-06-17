@@ -9,13 +9,16 @@ var Promise = require('bluebird');
 
 var amqpClient = new AMQPClient(Policy.EventHub);
 var io = require('socket.io-emitter')({ host: 'localhost', port: 6379 });
+var data = {};
+
+var config = require('../data/settings.json').configuration.cloud.azure;
 
 var protocol = 'amqps';
-var eventHubHost = 'ihsuprodamres015dednamespace.servicebus.windows.net';
-var sasName = 'iothubowner';
-var sasKey = 'qsrJ7NU3y0BWLfT9bh2CQPseIU9qrko/woj8k+eTeks=';
-var eventHubName = 'iothub-ehub-raspberry-33653-472e0fb3b7';
-var numPartitions = 2;
+var eventHubHost = config.eventHubHost;
+var sasName = config.sasName;
+var sasKey = config.sasKey;
+var eventHubName = config.eventHubName;
+var numPartitions = config.numPartitions;
 
 var filterOffset = new Date().getTime();
 var filterOption;
@@ -33,7 +36,9 @@ var recvAddr = eventHubName + '/ConsumerGroups/$default/Partitions/';
 
 var messageHandler = function (partitionId, message) {
     console.log('Received(' + partitionId + '): ', message.body);
-    io.emit('azure:message', message);
+    data.message = message;
+    data.host = eventHubHost;
+    io.emit('azure:message', data);
 
 };
 

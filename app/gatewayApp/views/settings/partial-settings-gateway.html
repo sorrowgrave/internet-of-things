@@ -4,47 +4,55 @@
         <li role="presentation" ui-sref-active="active"><a ui-sref="settings.gateway.amazon" aria-controls="amazon">Amazon</a></li>
         <li role="presentation" ui-sref-active="active"><a ui-sref="settings.gateway.azure" aria-controls="azure">Azure</a></li>
     </ul>
-    <form id="cloudForm" ng-submit="settingsCloudCtrl.updateCloud()">
+    <form id="settingsForm" ng-submit="settingsGatewayCtrl.updateSettings()">
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane" ui-sref="settings.gateway.general" ui-sref-active="active" >
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
+<!--                        <div class="form-group">
                             <label for="gatewayName">Gateway Name: </label>
                             <input type="text" class="form-control" id="gatewayName" placeholder="Gateway Name"
-                                   ng-model="settingsGatewayCtrl.gatewayName">
-                        </div>
+                                   ng-model="settingsGatewayCtrl.gateway.general.name">
+                        </div>-->
                         <div class="form-group">
-                            <label for="baudRate">Baud Rate: </label>
-                            <input type="text" class="form-control" id="baudRate" placeholder="if unknown, use 9600"
-                                   ng-model="settingsGatewayCtrl.baudRate">
+                            <label for="serialPort">Serial Port: </label>
+                            <input type="text" class="form-control" id="serialPort" placeholder="e.g. /dev/ttyUSB0"
+                                   ng-model="settingsGatewayCtrl.gateway.general.serialPort">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="serialPort">Serial Port: </label>
-                            <input type="text" class="form-control" id="serialPort" placeholder="e.g. /dev/ttyUSB0"
-                                   ng-model="settingsGatewayCtrl.SerialPort">
+                            <label for="baudRate">Baud Rate: </label>
+                            <input type="text" class="form-control" id="baudRate" placeholder="if unknown, use 9600"
+                                   ng-model="settingsGatewayCtrl.gateway.general.baudRate">
                         </div>
                     </div>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" ui-sref="settings.gateway.amazon" ui-sref-active="active" >
+            <div role="tabpanel" class="tab-pane" ui-sref="settings.gateway.amazon" ui-sref-active="active">
                 <div class="row" >
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label for="thingName">Thing Name: </label>
+                            <input type="text" class="form-control" id="thingName" placeholder="AWS IoT thing name" ng-model="settingsGatewayCtrl.gateway.amazon.thingName">
+                        </div>
+                        <div class="form-group">
                             <label for="privateKey">Private Key: </label>
-                            <input type="text" class="form-control" id="privateKey" placeholder="0000000000-private.pem.key" ng-model="settingsCloudCtrl.cloud.amazon.endPoint">
+                            <input type="text" class="form-control" id="privateKey" placeholder="/path/to/0000000000-private.pem.key" ng-model="settingsGatewayCtrl.gateway.amazon.keyPath">
                         </div>
                         <div class="form-group">
                             <label for="certificate">Certificate: </label>
-                            <input type="text" class="form-control" id="certificate" placeholder="0000000000-certificate.pem.crt" ng-model="settingsCloudCtrl.cloud.amazon.region">
+                            <input type="text" class="form-control" id="certificate" placeholder="/path/to/0000000000-certificate.pem.crt" ng-model="settingsGatewayCtrl.gateway.amazon.certPath">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label for="region">Region: </label>
+                            <input type="text" class="form-control" id="region" placeholder="AWS IoT thing region" ng-model="settingsGatewayCtrl.gateway.amazon.region">
+                        </div>
+                        <div class="form-group">
                             <label for="rootCA">Root CA: </label>
-                            <input type="text" class="form-control" id="rootCA"  placeholder="rootCA.pem" ng-model="settingsCloudCtrl.cloud.amazon.clientId"/>
+                            <input type="text" class="form-control" id="rootCA"  placeholder="/path/to/rootCA.pem" ng-model="settingsGatewayCtrl.gateway.amazon.caPath"/>
                         </div>
                     </div>
                 </div>
@@ -53,26 +61,8 @@
                 <div class="row" >
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="eventHubHost">Event-Hub Host: </label>
-                            <input type="text" class="form-control" id="eventHubHost" placeholder="*.servicebus.windows.net" ng-model="settingsCloudCtrl.cloud.amazon.eventHubHost">
-                        </div>
-                        <div class="form-group">
-                            <label for="eventHubName">Event-Hub Name: </label>
-                            <input type="text" class="form-control" id="eventHubName" placeholder="iothub-ehub-[IoT Hub Name]-[number]-[number]" ng-model="settingsCloudCtrl.cloud.amazon.eventHubName">
-                        </div>
-                        <div class="form-group">
-                            <label for="numPartitions">Number of Partitions: </label>
-                            <input type="password" class="form-control" id="numPartitions"  placeholder="e.g. 2" ng-model="settingsCloudCtrl.cloud.amazon.numPartitions">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="sasName">SAS Name: </label>
-                            <input type="text" class="form-control" id="sasName"  placeholder="Policy Name, default: iothubowner" ng-model="settingsCloudCtrl.cloud.amazon.sasName"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="sasKey">SAS Key: </label>
-                            <input type="text" class="form-control" id="sasKey"  placeholder="Primary key of corresponding Policy" ng-model="settingsCloudCtrl.cloud.amazon.sasKey"/>
+                            <label for="connectionString">Connection String: </label>
+                            <input type="text" class="form-control" id="connectionString" placeholder="HostName=<IoT hub hostname>;DeviceId=<device name>;SharedAccessKey=<Shared access key>=" ng-model="settingsGatewayCtrl.gateway.azure.connectionString">
                         </div>
                     </div>
                 </div>

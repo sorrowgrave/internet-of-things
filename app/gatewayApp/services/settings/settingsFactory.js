@@ -6,16 +6,14 @@
 
     angular.module('gatewayApp').factory('settingsFactory', settingsFactory);
 
-    var baseUrl = 'http://192.168.1.156';
-    var port = '3000';
+    settingsFactory.$inject = ['$http', 'address'];
 
-    var address = baseUrl + ':' + port;
+    function settingsFactory($http, address) {
 
-    function settingsFactory($http) {
 
         return {
 
-            getCloudSettings: function (spec1, spec2) {
+            getSettings: function (spec1, spec2) {
 
                 if (spec2 === undefined) spec2 = '';
 
@@ -26,11 +24,10 @@
                     .error(function (data, status, headers, config) {})
             },
 
-            updateCloudSettings: function (cloud) {
+            updateSettings: function (spec1, data) {
 
-                console.log(JSON.stringify(cloud));
 
-                return $http.post(address + '/gateway/modify/config/cloud', cloud)
+                return $http.post(address + '/gateway/modify/config/' + spec1, data)
 
                     .success(function (data, status, headers, config) {})
 

@@ -13,7 +13,7 @@
 
         vm.settingsFact = settingsFactory;
 
-        vm.settingsFact.getCloudSettings('cloud', 'amazon')
+        vm.settingsFact.getSettings('cloud', 'amazon')
             .success(function (data) {
 
                 console.log(JSON.stringify(data));
@@ -74,7 +74,7 @@
                 .success(function (data) {
 
                     log = data ? "On" : "Off";
-                    vm.logs.log("successfully turned " + log);
+                    vm.logs.log("Successfully turned " + log);
                     vm.gatewayStatus = data ? "Off" : "On";
                     vm.cooldown = false;
 

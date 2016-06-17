@@ -17,15 +17,19 @@
         vm.logs = new LogService();
         vm.sensorService = new SensorService();
 
-        socketFactory.on('azure:message', function (msg) {
+        socketFactory.on('azure:message', function (data) {
 
-            if(!vm.sensorService.check(msg.body.sensor))
+            var content = data.message.body;
+
+            vm.logs.log("Message Arrived in: " + data.host);
+
+            if(!vm.sensorService.check(content.sensor))
             {
-                vm.sensorService.add(msg.body.sensor, msg.body.hardware, msg.body.data)
+                vm.sensorService.add(content.sensor, content.hardware, content.data)
             }
             else
             {
-                vm.sensorService.update(msg.body.sensor, msg.body.data);
+                vm.sensorService.update(content.sensor, content.data);
             }
 
         });
@@ -48,7 +52,7 @@
             .success(function (data) {
 
                 log = data ? "On" : "Off";
-                vm.logs.log("successfully turned " + log);
+                vm.logs.log("Successfully turned " + log);
                 vm.cooldown = false;
 
             })

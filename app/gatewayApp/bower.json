@@ -1,5 +1,5 @@
 {
-  "name": "gatewayapp",
+  "name": "gatewayApp",
   "description": "Front-end web application for communicating with an IoT field gateway.",
   "main": "index.html",
   "keywords": [

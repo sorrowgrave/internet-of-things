@@ -1,6 +1,6 @@
 <div class="form-inline">
-    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <label for="startGateway" class="hidden-xs">Gateway: </label>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left: 0px;">
+        <label for="startGateway" class="hidden-xs">Turn Gateway: </label>
         <button class="btn btn-primary" style="margin-left:15px;" id="startGateway" ng-disabled="azureCtrl.cooldown"
                 ng-click="azureCtrl.provokeAzure()">{{azureCtrl.gatewayStatus}}
         </button>

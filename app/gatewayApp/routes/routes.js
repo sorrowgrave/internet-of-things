@@ -121,7 +121,8 @@
             })
 
             .state('settings.help', {
-                url: '/help'
+                url: '/help',
+                templateUrl: 'views/settings/partial-settings-help.html'
 
             })
 

@@ -18,26 +18,26 @@
         var vm = this;
         vm.cloud = {};
 
-        settingsFactory.getCloudSettings('cloud')
+
+        settingsFactory.getSettings('cloud')
             .success(function (data) {
 
                 vm.cloud = data;
 
             })
             .error(function (err, status) {
-                alert("error from controller" + err)
+                //alert("error from controller" + err)
             });
 
-        vm.updateCloud = function () {
+        vm.updateSettings = function () {
 
-            alert("reached controller");
-            settingsFactory.updateCloudSettings(vm.cloud)
+            settingsFactory.updateSettings("cloud", vm.cloud)
                 .success(function (data) {
-
+                    alert("Settings saved");
 
                 })
                 .error(function (err, status) {
-                    alert("error from controller" + err)
+                    alert("Failed to save settings" + err)
                 })
 
         }
@@ -47,8 +47,30 @@
     angular.module('gatewayApp').controller('settingsGatewayController', settingsGatewayController);
 
     function settingsGatewayController(settingsFactory){
+        var vm = this;
+        vm.gateway = {};
 
+        settingsFactory.getSettings('gateway')
+            .success(function (data) {
+
+                vm.gateway = data;
+
+            })
+            .error(function (err, status) {
+                //alert("error from controller" + err)
+            });
+
+        vm.updateSettings = function () {
+
+            settingsFactory.updateSettings("gateway", vm.gateway)
+                .success(function (data) {
+                    alert("Settings saved");
+
+                })
+                .error(function (err, status) {
+                    alert("Failed to save settings" + err)
+                })
+
+        }
     }
-
-
 })();

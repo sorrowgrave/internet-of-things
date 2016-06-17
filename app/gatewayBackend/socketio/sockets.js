@@ -32,12 +32,4 @@ module.exports = function (io) {
         }
     });
 
-/*    io.send = function (message){
-
-        if (clients.length > 0) {
-            randomClient = Math.floor(Math.random() * clients.length);
-            clients[randomClient].emit('azure:message', message);
-        }
-
-    }*/
 };

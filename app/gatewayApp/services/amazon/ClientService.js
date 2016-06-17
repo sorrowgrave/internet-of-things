@@ -30,7 +30,7 @@
             this.client.on('messageArrived', function (msg) {
 
                 self.msg = new ReceivedMsg(msg);
-                self.logs.log('messageArrived in ' + self.id);
+                self.logs.log('Message Arrived in ' + self.id);
 
                 if(!self.sensorService.check(self.msg.content.sensor))
                 {
@@ -47,13 +47,13 @@
                 self.logs.log('connected');
             });
             this.client.on('subscribeFailed', function (e) {
-                self.logs.logError('subscribeFailed ' + e);
+                self.logs.logError('Subscribe Failed ' + e);
             });
             this.client.on('subscribeSuccess', function () {
-                self.logs.log('subscribeSuccess');
+                self.logs.log('Subscribe Success');
             });
             this.client.on('publishFailed', function (e) {
-                self.logs.log('publishFailed');
+                self.logs.log('Publish Failed');
             });
         }
 

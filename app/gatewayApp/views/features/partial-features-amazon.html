@@ -1,13 +1,14 @@
 <div class="form-inline">
-    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:0px;">
         <button class="btn btn-primary" ng-click="amazonCtrl.createClient()">Connect</button>
     </div>
-    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <label for="startGateway" class="hidden-xs">Gateway: </label>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:0px;">
+        <label for="startGateway" class="hidden-xs">Turn Gateway: </label>
         <button class="btn btn-primary" style="margin-left:15px;" id="startGateway" ng-disabled="amazonCtrl.cooldown"
                 ng-click="amazonCtrl.provokeAmazon()">{{amazonCtrl.gatewayStatus}}
         </button>
     </div>
+
 </div>
 <div ng-repeat="clientCtrl in amazonCtrl.clients.val">
     <div class="panel-heading row col-md-12 col-sm-12 col-xs-12 ">

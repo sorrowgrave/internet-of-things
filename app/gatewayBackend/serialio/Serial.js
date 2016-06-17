@@ -6,24 +6,28 @@ var serialport = require("serialport");
 var SerialPort = serialport.SerialPort;
 
 var xbee_api = require('xbee-api');
+var Message = require('azure-iot-device').Message;
+
+var config = require('../data/settings.json').configuration.gateway.general;
+var serialPort = config.serialPort;
+var baudRate = config.baudRate;
 
 var C = xbee_api.constants;
 
 var data;
 
+var sendMethod;
+
 var xbeeAPI = new xbee_api.XBeeAPI({
     api_mode: 1
 });
 
-var port = new SerialPort('/dev/ttyUSB0', {
-    baudrate: 9600,
+var port = new SerialPort(serialPort, {
+    baudrate: baudRate,
     parser: xbeeAPI.rawParser(1000)
 
 }, false);
 
-var Message = require('azure-iot-device').Message;
-
-var sendMethod;
 
 module.exports = function (cloud, client) {
     'use strict';

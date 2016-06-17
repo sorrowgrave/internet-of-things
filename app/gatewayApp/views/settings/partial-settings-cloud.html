@@ -3,7 +3,7 @@
         <li role="presentation" ui-sref-active="active"><a ui-sref="settings.cloud.amazon" aria-controls="amazon">Amazon</a></li>
         <li role="presentation" ui-sref-active="active"><a ui-sref="settings.cloud.azure" aria-controls="azure">Azure</a></li>
     </ul>
-    <form id="cloudForm" ng-submit="settingsCloudCtrl.updateCloud()">
+    <form id="settingsForm" ng-submit="settingsCloudCtrl.updateSettings()">
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane" ui-sref="settings.cloud.amazon" ui-sref-active="active" >
                 <div class="row" >
@@ -38,25 +38,25 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="eventHubHost">Event-Hub Host: </label>
-                            <input type="text" class="form-control" id="eventHubHost" placeholder="*.servicebus.windows.net" ng-model="settingsCloudCtrl.cloud.amazon.eventHubHost">
+                            <input type="text" class="form-control" id="eventHubHost" placeholder="*.servicebus.windows.net" ng-model="settingsCloudCtrl.cloud.azure.eventHubHost">
                         </div>
                         <div class="form-group">
                             <label for="eventHubName">Event-Hub Name: </label>
-                            <input type="text" class="form-control" id="eventHubName" placeholder="iothub-ehub-[IoT Hub Name]-[number]-[number]" ng-model="settingsCloudCtrl.cloud.amazon.eventHubName">
+                            <input type="text" class="form-control" id="eventHubName" placeholder="iothub-ehub-[IoT Hub Name]-[number]-[number]" ng-model="settingsCloudCtrl.cloud.azure.eventHubName">
                         </div>
                         <div class="form-group">
                             <label for="numPartitions">Number of Partitions: </label>
-                            <input type="password" class="form-control" id="numPartitions"  placeholder="e.g. 2" ng-model="settingsCloudCtrl.cloud.amazon.numPartitions">
+                            <input class="form-control" id="numPartitions"  placeholder="e.g. 2" ng-model="settingsCloudCtrl.cloud.azure.numPartitions">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="sasName">SAS Name: </label>
-                            <input type="text" class="form-control" id="sasName"  placeholder="Policy Name, default: iothubowner" ng-model="settingsCloudCtrl.cloud.amazon.sasName"/>
+                            <input type="text" class="form-control" id="sasName"  placeholder="Policy Name, default: iothubowner" ng-model="settingsCloudCtrl.cloud.azure.sasName"/>
                         </div>
                         <div class="form-group">
                             <label for="sasKey">SAS Key: </label>
-                            <input type="text" class="form-control" id="sasKey"  placeholder="Primary key of corresponding Policy" ng-model="settingsCloudCtrl.cloud.amazon.sasKey"/>
+                            <input type="password" class="form-control" id="sasKey"  placeholder="Primary key of corresponding Policy" ng-model="settingsCloudCtrl.cloud.azure.sasKey"/>
                         </div>
                     </div>
                 </div>

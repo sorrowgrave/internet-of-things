@@ -6,10 +6,13 @@
 
     angular.module('gatewayApp').factory('socketFactory', socketFactory);
 
-    socketFactory.$inject = ['$rootScope'];
-    var socket = io.connect('http://192.168.1.156:3000');
+    socketFactory.$inject = ['$rootScope', 'address'];
 
-    function socketFactory($rootScope) {
+    var socket;
+
+    function socketFactory($rootScope, address) {
+
+        socket = io.connect(address);
 
         return {
             on: function (eventName, callback) {

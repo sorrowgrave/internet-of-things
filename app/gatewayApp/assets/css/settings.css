@@ -59,9 +59,8 @@ div.bhoechie-tab-menu div.list-group>a.active:after{
 
 div.bhoechie-tab-content{
     background-color: #ffffff;
-    /* border: 1px solid #eeeeee; */
-    margin-left: 15px;
-    margin-top: 15px;
+    margin-top: 20px;
+    margin-left: 30px;
 }
 
 div.bhoechie-tab div.bhoechie-tab-content:not(.active){
